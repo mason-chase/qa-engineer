@@ -2,11 +2,14 @@ Feature: Get Customer
 
   Background:
 
+  Scenario: Customer made There is no information to display
+
     Given an customer with the following attributes
       | firstName | lastName | dateOfBirth | email               |
       | Rachel    | Green    | 1990-01-01  | rachel.green@fs.com |
 
     When customer already exists
+    Then 'Display error'
 
   Scenario: GET BY Email
 
