@@ -2,11 +2,14 @@ Feature: Update Customer
 
   Background:
 
+  Scenario Outline: Enter duplicate information
+
     Given an Customer with the following attributes
       | firstName | lastName | dateOfBirth | email               |
       | Rachel    | Green    | 1990-01-01  | rachel.green@fs.com |
 
     When Customer already exists
+    Then 'Display error'
 
 
   Scenario Outline: <testCase> <expectedResult>
