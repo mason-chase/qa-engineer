@@ -42,9 +42,9 @@ Feature: Create Customer
       | John      | Smith    | 2000-01-01  | john.smith@customer.com | 7000048888  | 1000000121314     | 1000      |
 
     When Enter the information and the mobile number is not acceptable, 'the error is displayed'
-    Then 'Display error'
+    Then the create 'FAILS'
 
-  Scenario: THE LENGTHOF THE MOBILE NUMBER MUST BE 11 AND MUST BE IN A VALID FORMAT
+  Scenario: THE LENGTH OF THE MOBILE NUMBER MUST BE 11 AND MUST BE IN A VALID FORMAT
 
     Given user wants to create a customer with the following attributes
       | firstName | lastName | dateOfBirth | email                   | phoneNumber        | bankAccountNumber | amoutnDue |
@@ -92,7 +92,3 @@ Feature: Create Customer
 
     Then should display an error message indicating that the combination of email and bank account number must be unique
     And 'the new customer should not be created'
-
-
-
-
