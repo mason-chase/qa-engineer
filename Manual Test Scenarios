@@ -1,0 +1,25 @@
+Manual Test Scenarios:
+
+Credit Card Payment Scenarios:
+Scenario 1: Successful Payment
+1.	Log in to the platform with customer credentials.
+2.	Navigate to the payment section.
+3.	Enter valid credit card details.
+4.	Submit the payment.
+Scenario 2: Failed Payment
+1.	Log in to the platform with customer credentials.
+2.	Navigate to the payment section.
+3.	Enter invalid credit card details (e.g., expired card).
+4.	Verify that the payment fails.
+Scenario 3: Cancel Payment
+1.	Log in to the platform with customer credentials.
+2.	Initiate the payment process.
+3.	Click on the "Cancel" button before final submission.
+4.	Confirm that the payment process is canceled.
+Scenario 4: Delayed Payment
+1.	Log in to the platform with customer credentials.
+2.	Navigate to the payment section.
+3.	Enter valid credit card details but intentionally delay the final submission.
+4.	Verify that the system handles the delayed submission appropriately, and the payment is processed after submission.
+
+
