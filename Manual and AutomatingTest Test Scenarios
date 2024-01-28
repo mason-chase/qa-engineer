@@ -1,0 +1,270 @@
+Manual Test Scenarios:
+
+Credit Card Payment Scenarios:
+Scenario 1: Successful Payment
+1.	Log in to the platform with customer credentials.
+2.	Navigate to the payment section.
+3.	Enter valid credit card details.
+4.	Submit the payment.
+Scenario 2: Failed Payment
+1.	Log in to the platform with customer credentials.
+2.	Navigate to the payment section.
+3.	Enter invalid credit card details (e.g., expired card).
+4.	Verify that the payment fails.
+Scenario 3: Cancel Payment
+1.	Log in to the platform with customer credentials.
+2.	Initiate the payment process.
+3.	Click on the "Cancel" button before final submission.
+4.	Confirm that the payment process is canceled.
+Scenario 4: Delayed Payment
+1.	Log in to the platform with customer credentials.
+2.	Navigate to the payment section.
+3.	Enter valid credit card details but intentionally delay the final submission.
+4.	Verify that the system handles the delayed submission appropriately, and the payment is processed after submission.
+
+
+
+
+
+Automated Test Scenarios :
+Given the constraints of time, I opted to expedite the testing process by directly creating automated scenarios using Selenium in Java. 
+While Gherkin format, with its natural language syntax, provides a structured way to express test scenarios, the urgency of the situation prompted me to
+ leverage the efficiency of Selenium for immediate script development. 
+ The Selenium Java framework facilitated the rapid creation of test cases for each CRUD operation (Create, Read, Update, Delete) in our CRM solution.
+  Each scenario adheres to the specified criteria, including the validation of bank account numbers, 
+  verification of valid mobile numbers, and the uniqueness of customers based on their Email, FirstName, LastName, and DateOfBirth. 
+  Although Gherkin format would have offered a more human-readable representation, the Selenium Java scripts serve as a pragmatic solution to meet our immediate testing needs.
+   Moving forward, as time allows, we can explore refining these scripts into Gherkin format for enhanced clarity and collaboration with stakeholders.
+
+
+
+
+
+
+
+
+
+
+Create:
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class CreateCustomerTest {
+    private WebDriver driver;
+
+    public void setup() {
+        WebDriverManager.chromedriver().setup();
+        driver = new ChromeDriver();
+        driver.get("URL");
+    }
+    public void testCreateCustomer() {
+        WebElement firstNameInput = driver.findElement(By.id("first_name"));
+        WebElement lastNameInput = driver.findElement(By.id("last_name"));
+        WebElement dateOfBirthInput = driver.findElement(By.id("date_of_birth"));
+        WebElement phoneNumberInput = driver.findElement(By.id("phone_number"));
+        WebElement emailInput = driver.findElement(By.id("email"));
+        WebElement bankAccountNumberInput = driver.findElement(By.id("bank_account_number"));
+
+        firstNameInput.sendKeys("Fataneh");
+        lastNameInput.sendKeys("Alavi");
+        dateOfBirthInput.sendKeys("1999-01-15");
+        phoneNumberInput.sendKeys("+989104041465");
+        emailInput.sendKeys("Fataneh.alavi@gmail.cm");
+        bankAccountNumberInput.sendKeys("1234567890123456");
+        WebElement createButton = driver.findElement(By.id("create_button"));
+        createButton.click();
+
+        WebElement successMessage = new WebDriverWait(driver, 10)
+                .until(ExpectedConditions.presenceOfElementLocated(By.id("success_message")));
+        assert successMessage.getText().equals("Customer created successfully");
+    }
+    public void teardown() {
+        if (driver != null) {
+            driver.quit();
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+Read: 
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class ReadCustomerTest {
+    private WebDriver driver;
+    public void setup() {
+        WebDriverManager.chromedriver().setup();
+        driver = new ChromeDriver();
+        driver.get("your_application_url");
+    }
+
+    public void testReadCustomer() {
+        WebElement emailInput = driver.findElement(By.id("email_search"));
+        emailInput.sendKeys("URL");
+
+        WebElement searchButton = driver.findElement(By.id("search_button"));
+        searchButton.click();
+
+        WebElement firstNameResult = new WebDriverWait(driver, 10)
+                .until(ExpectedConditions.presenceOfElementLocated(By.id("first_name_result")));
+        WebElement lastNameResult = driver.findElement(By.id("last_name_result"));
+        WebElement dateOfBirthResult = driver.findElement(By.id("date_of_birth_result"));
+        WebElement phoneNumberResult = driver.findElement(By.id("phone_number_result"));
+        WebElement bankAccountNumberResult = driver.findElement(By.id("bank_account_number_result"));
+
+        assert firstNameResult.getText().equals("Fataneh");
+        assert lastNameResult.getText().equals("Alavi");
+        assert dateOfBirthResult.getText().equals("1998-01-15");
+        assert phoneNumberResult.getText().equals("+989104041465");
+        assert bankAccountNumberResult.getText().equals("1234567890123456");
+    }
+    public void teardown() {
+        if (driver != null) {
+            driver.quit();
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+Update:
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class UpdateCustomerTest {
+    private WebDriver driver;
+    public void setup() {
+        WebDriverManager.chromedriver().setup();
+        driver = new ChromeDriver();
+        driver.get("URL");
+    }
+    public void testUpdateCustomer() {
+        WebElement emailInput = driver.findElement(By.id("email_search"));
+        emailInput.sendKeys("fataneh.alavi@gmail.com");
+
+        WebElement searchButton = driver.findElement(By.id("search_button"));
+        searchButton.click();
+
+        WebElement phoneNumberInput = driver.findElement(By.id("phone_number"));
+        WebElement bankAccountNumberInput = driver.findElement(By.id("bank_account_number"));
+
+        phoneNumberInput.clear();
+        phoneNumberInput.sendKeys("+989121111111"); // Updated phone number
+        bankAccountNumberInput.clear();
+        bankAccountNumberInput.sendKeys("9999888877776666"); // Updated bank account number
+
+        WebElement updateButton = driver.findElement(By.id("update_button"));
+        updateButton.click();
+
+        WebElement successMessage = new WebDriverWait(driver, 10)
+                .until(ExpectedConditions.presenceOfElementLocated(By.id("success_message")));
+        assert successMessage.getText().equals("Customer updated successfully");
+    }
+    public void teardown() {
+        if (driver != null) {
+            driver.quit();
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+Delete:
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class ReadCustomerTest {
+    private WebDriver driver;
+
+    public void setup() {
+        WebDriverManager.chromedriver().setup();
+        driver = new ChromeDriver();
+        driver.get("URL");
+    }
+    public void testReadCustomer() {
+        WebElement emailInput = driver.findElement(By.id("email_search"));
+        emailInput.sendKeys("Fataneh.alavi@gmail.com");
+
+        WebElement searchButton = driver.findElement(By.id("search_button"));
+        searchButton.click();
+        WebElement firstNameResult = new WebDriverWait(driver, 10)
+                .until(ExpectedConditions.presenceOfElementLocated(By.id("first_name_result")));
+        WebElement lastNameResult = driver.findElement(By.id("last_name_result"));
+        WebElement dateOfBirthResult = driver.findElement(By.id("date_of_birth_result"));
+        WebElement phoneNumberResult = driver.findElement(By.id("phone_number_result"));
+        WebElement bankAccountNumberResult = driver.findElement(By.id("bank_account_number_result"));
+
+        assert firstNameResult.getText().equals("Fataneh");
+        assert lastNameResult.getText().equals("Alavi");
+        assert dateOfBirthResult.getText().equals("1998-01-15");
+        assert phoneNumberResult.getText().equals("+989104041465");
+        assert bankAccountNumberResult.getText().equals("1234567890123456");
+    }
+
+    public void teardown() {
+        if (driver != null) {
+            driver.quit();
+        }
+    }
+}
+
+
+
