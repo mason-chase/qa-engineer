@@ -1,0 +1,39 @@
+Scenario for successful payment:
+Expected Result: If customer is valid and has enough credential 
+We should display success msg 
+We should reduce his credential according to paid amount 
+We should update related fields on database tables
+Some testcases for checking customer validation:
+Phone number scenario’s:
+Phone number is blank
+Phone number has space
+Phone number is long
+Phone number is short
+Phone number has special characters
+Phone number has characters
+Email scenario’s:
+Email is blank
+Email has space
+Email is long
+Email is short
+Email has special characters
+Email has valid format address
+Email has invalid format address
+Email is unique
+Email isn’t unique
+
+Scenario for Failed payment:
+Expected Result: If customer doesn’t have enough credential 
+We should display proper error msg 
+We should request him to use his card for payment
+
+Scenario for Cancel payment:
+Expected Result: If customer click on cancel button in order to cancel his payment 
+We should display proper msg 
+His credential shouldn’t change
+
+Scenario for Delayed payment:
+Expected Result: If bank API has delay 
+We should display proper msg 
+We should display Re-Try button 
+Customer credential shouldn’t change
