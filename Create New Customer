@@ -1,0 +1,18 @@
+Feature: Create New Customer
+Scenario: Create customer with mandatory fields
+    Given entered first name
+      And entered last name
+      And entered date of birth
+      And entered Phone number
+      And entered Email
+      And entered bank account number
+    When click Create/Add
+      And first name is valid
+      And last name is valid
+      And date of birth is valid
+      And Phone number is valid
+      And Email is valid
+      And bank account number is valid
+   Then show the customer is created successfully 
+     And insert on related table 
+   But show the proper error 
