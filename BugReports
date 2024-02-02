@@ -1,0 +1,23 @@
+PhoneNumber:
+    the first issue I encountered was when i started to cover edge cases for the Phone number
+        phone number is not unique so  Customers can have a phone number that is shared between them in the crm system 
+    if the phone number becomes unique it can provide another way to find the customer and no more customers can have the 
+        same phone number 
+
+
+BankAccountNumber:
+    same as phoneNumber this field can also be unique 
+        Multíple Customers can have the same  BankAccountNumber wich can lead to serious issue of having many Customers with 1 BankAccountNumber
+    same as phoneNumber it can be unique to provide another way to find the customer and to make sure that no other customers have the same BankAccountNumber
+
+
+Firstname, Lastname, DateOfBirth uniqueness issue:
+    imagine we have 2 customers with identical Firstname, Lastname, DateOfBirth that want to be created in the system, as the mentioned fields are set to be unique 
+        one customer can't be registered in the system and we lose a customer in the process wich if the uniqueness of these fields were to be removed this problem would 
+        be resolved and based on the mentioned issues above we can locate the customer by other fields.
+
+
+
+Privacy issue after forking the Git Repository
+    I could not change the visibility for the Repo after i forked it 
+        it was not allowing me to change it due to security reasons 
